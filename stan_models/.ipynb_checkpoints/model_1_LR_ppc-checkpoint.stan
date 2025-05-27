@@ -1,23 +1,23 @@
 data {
-  int<lower=0> N;                        // number of observations
-  matrix[N, 7] X;                        // matrix of 7 psychological traits
-}
-
-parameters {
-  real alpha;                            // intercept
-  vector[7] beta;                        // coefficients for predictors
-}
-
-model {
-  // Priors
-  alpha ~ normal(-2, 1);                  // intercept prior
-  beta ~ normal(0, 1);                   // weakly informative priors for traits
-
+  int<lower=0> N;
+  matrix[N, 7] X;
 }
 
 generated quantities {
+  real alpha;
+  vector[7] beta;
   vector[N] y_sim;
+  vector[N] p;
+
+  alpha = normal_rng(-2.197, 0.5);
+
+  for (i in 1:5)
+    beta[i] = normal_rng(0, 0.3);
+  for (i in 6:7)
+    beta[i] = normal_rng(0.5, 0.3);
+
   for (n in 1:N) {
-    y_sim[n] = bernoulli_logit_rng(alpha + dot_product(X[n], beta));
+    p[n] = inv_logit(alpha + dot_product(X[n], beta));
+    y_sim[n] = bernoulli_rng(p[n]);
   }
 }

@@ -10,7 +10,7 @@ parameters {
 }
 
 model {
-  alpha ~ normal(-2.41, 0.5);
+  alpha ~ normal(-2.197, 0.5);
   beta[1:5] ~ normal(0, 0.3);
   beta[6:7] ~ normal(0.5, 0.3);
 

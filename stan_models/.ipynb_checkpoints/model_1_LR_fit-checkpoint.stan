@@ -10,7 +10,7 @@ parameters {
 }
 
 model {
-  alpha ~ normal(-2.41, 0.5);
+  alpha ~ normal(-2.197, 0.5);
   beta[1:5] ~ normal(0, 0.3);
   beta[6:7] ~ normal(0.5, 0.3);
 
@@ -19,7 +19,9 @@ model {
 
 generated quantities {
   vector[N] y_pred;
+  vector[N] p;
   for (n in 1:N) {
-    y_pred[n] = bernoulli_logit_rng(alpha + dot_product(X[n], beta));
+    p[n] = inv_logit(alpha + dot_product(X[n], beta));
+    y_pred[n] = bernoulli_rng(p[n]);  
   }
 }
