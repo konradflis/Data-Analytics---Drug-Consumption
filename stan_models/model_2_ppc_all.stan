@@ -9,13 +9,13 @@ generated quantities {
   vector[N] p;                // addiction probability
   vector[N] y_sim;            // label
 
-  alpha = normal_rng(-1, 0.5);
+  alpha = normal_rng(-2.75, 1.5);
 
   for (i in 1:5) {
-    beta[i] = normal_rng(0, 0.3);          // neutral
+    beta[i] = normal_rng(0, 0.25);          // neutral
   }
   for (i in 6:7) {
-    beta[i] = normal_rng(0.5, 0.3);       
+    beta[i] = normal_rng(0.75, 0.75);       
   }
 
   beta[8] = normal_rng(-0.2, 0.3);         // age

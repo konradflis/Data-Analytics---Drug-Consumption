@@ -9,12 +9,12 @@ generated quantities {
   vector[N] y_sim;
   vector[N] p;
 
-  alpha = normal_rng(-2.197, 0.5);
+  alpha = normal_rng(-2.75, 1.5);
 
   for (i in 1:5)
-    beta[i] = normal_rng(0, 0.3);
+    beta[i] = normal_rng(0, 0.25);
   for (i in 6:7)
-    beta[i] = normal_rng(0.5, 0.3);
+    beta[i] = normal_rng(0.75, 0.75);
 
   for (n in 1:N) {
     p[n] = inv_logit(alpha + dot_product(X[n], beta));

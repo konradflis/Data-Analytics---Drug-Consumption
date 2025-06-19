@@ -10,9 +10,9 @@ parameters {
 }
 
 model {
-  alpha ~ normal(-2.197, 0.5);
-  beta[1:5] ~ normal(0, 0.3);
-  beta[6:7] ~ normal(0.5, 0.3);
+  alpha ~ normal(-2.75, 1.5);
+  beta[1:5] ~ normal(0, 0.25);
+  beta[6:7] ~ normal(0.75, 0.75);
 
   y ~ bernoulli_logit(alpha + X * beta);
 }
