@@ -31,8 +31,11 @@ model {
 generated quantities {
   vector[N] y_pred;
   vector[N] p;
+  vector[N] log_lik;
+
   for (n in 1:N) {
     p[n] = inv_logit(alpha + dot_product(X[n], beta));
     y_pred[n] = bernoulli_rng(p[n]);  
+    log_lik[n] = bernoulli_lpmf(y[n] | p[n]);
   }
 }
